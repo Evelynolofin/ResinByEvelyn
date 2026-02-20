@@ -162,30 +162,6 @@ function AppContent() {
   });
 
   const [addressSaved, setAddressSaved] = useState(false);
-
-  // const [cartItems, setCartItems] = useState<Product[]>([]);
-  // const [cartLoaded, setCartLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   if (typeof window === "undefined") return
-
-  //   try {
-  //     const stored = window.localStorage.getItem("cartItems")
-  //     if (stored) {
-  //       setCartItems(JSON.parse(stored))
-  //     }
-  //   } catch (err) {
-  //     console.error("Cart parse error:")
-  //     window.localStorage.removeItem("caerItems")
-  //   }
-  //   setCartLoaded(true)
-  // }, [])
-
-  // useEffect(() => {
-  //   if (!cartLoaded || typeof window === "undefined") return;
-
-  //   window.localStorage.setItem("cartItems", JSON.stringify(cartItems))
-  // }, [cartItems, cartLoaded])
   
   useEffect(() => {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
