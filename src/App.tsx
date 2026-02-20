@@ -12,6 +12,7 @@ import pen from "./assets/Pen Ink.jpeg"
 import bookring from "./assets/Book Ring.jpeg";
 import { useEffect } from "react";
 import Payment from "./components/block/Payment";
+import Cart from "./components/block/Cart";
 
 type Product = {
   id: number;
@@ -143,10 +144,10 @@ function AppContent() {
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(productList);
   
-  // const [cartItems, setCartItems] = useState<Product[]>(() => {
-  // const stored = localStorage.getItem("cartItems");
-  // return stored ? JSON.parse(stored) : [];
-  // });
+  const [cartItems, setCartItems] = useState<Product[]>(() => {
+  const stored = localStorage.getItem("cartItems");
+  return stored ? JSON.parse(stored) : [];
+  });
 
   const [details, setDetails] = useState<"delivery" | "pickup">("delivery")
 
@@ -162,33 +163,33 @@ function AppContent() {
 
   const [addressSaved, setAddressSaved] = useState(false);
 
-  const [cartItems, setCartItems] = useState<Product[]>([]);
-  const [cartLoaded, setCartLoaded] = useState(false);
+  // const [cartItems, setCartItems] = useState<Product[]>([]);
+  // const [cartLoaded, setCartLoaded] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return
-
-    try {
-      const stored = window.localStorage.getItem("cartItems")
-      if (stored) {
-        setCartItems(JSON.parse(stored))
-      }
-    } catch (err) {
-      console.error("Cart parse error:")
-      window.localStorage.removeItem("caerItems")
-    }
-    setCartLoaded(true)
-  }, [])
-
-  useEffect(() => {
-    if (!cartLoaded || typeof window === "undefined") return;
-
-    window.localStorage.setItem("cartItems", JSON.stringify(cartItems))
-  }, [cartItems, cartLoaded])
-  
   // useEffect(() => {
-  // localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  // }, [cartItems]);
+  //   if (typeof window === "undefined") return
+
+  //   try {
+  //     const stored = window.localStorage.getItem("cartItems")
+  //     if (stored) {
+  //       setCartItems(JSON.parse(stored))
+  //     }
+  //   } catch (err) {
+  //     console.error("Cart parse error:")
+  //     window.localStorage.removeItem("caerItems")
+  //   }
+  //   setCartLoaded(true)
+  // }, [])
+
+  // useEffect(() => {
+  //   if (!cartLoaded || typeof window === "undefined") return;
+
+  //   window.localStorage.setItem("cartItems", JSON.stringify(cartItems))
+  // }, [cartItems, cartLoaded])
+  
+  useEffect(() => {
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const updateQuantity = (id: number, delta: number) => {
     setFilteredProducts((prev) =>
@@ -335,70 +336,13 @@ function AppContent() {
           }
         />
 
-        <Route
-          path="/cart"
+        <Route path="/cart" 
           element={
-            <div className="p-6 max-w-4xl mx-auto mt-20">
-              <button onClick={() => navigate("/")}>
-                <ArrowLeft size={24} className="w-10 h-10"/>
-              </button>
-              <h2 className="text-2xl font-bold mb-6">Your Cart</h2>
-              {cartItems.length === 0 ? (
-                <p className="text-gray-600">Your cart is empty.</p>
-              ) : (
-                <div className="space-y-6">
-                  {cartItems.map((item) => (
-                    <div key={item.id} className="flex flex-col md:flex-row items-center gap-4 p-4 border rounded shadow-sm">
-                      {item.image && (
-                        <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded" />
-                      )}
-                      <div className="flex-1">
-                        <h2 className="text-lg font-semibold max-md:text-center">{item.name}</h2>
-                        <p className="text-gray-600 max-md:text-center">
-                          ₦{item.price.toLocaleString()} x {item.quantity} = ₦
-                          {(item.price * item.quantity).toLocaleString()}
-                        </p>
-
-                        <div className="flex items-center gap-2 mt-2">
-                          <button
-                            onClick={() => updateCartQuantity(item.id, -1)}
-                            className="px-2 py-1 bg-gray-300 rounded hover:bg-gray-400"
-                          >
-                            -
-                          </button>
-                          <span className="px-2 py-1 border rounded">{item.quantity}</span>
-                          <button
-                            onClick={() => updateCartQuantity(item.id, 1)}
-                            className="px-2 py-1 bg-gray-300 rounded hover:bg-gray-400"
-                          >
-                            +
-                          </button>
-                          <button
-                            onClick={() => removeFromCart(item.id)}
-                            className="ml-4 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="text-right text-xl font-bold mt-4">
-                    Total: ₦
-                    {cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString()}
-                  </div>
-
-                  <button
-                    onClick={() => navigate("/checkout")}
-                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700 transition"
-                  >
-                    Proceed to Checkout
-                  </button>
-                </div>
-              )}
-            </div>
-          }
+          <Cart
+            cartItems={cartItems}
+            updateCartQuantity={updateCartQuantity}
+            removeFromCart={removeFromCart}
+          />} 
         />
 
         <Route
