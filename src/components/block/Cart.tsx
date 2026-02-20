@@ -30,7 +30,7 @@ export default function Cart({
   return (
     <div className="p-6 max-w-4xl mx-auto mt-20">
               <button onClick={() => navigate("/")}>
-                <ArrowLeft size={24}/>
+                <ArrowLeft size={24} color="black"/>
               </button>
               <h2 className="text-2xl font-bold mb-6">Your Cart</h2>
               {cartItems.length === 0 ? (
