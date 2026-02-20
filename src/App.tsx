@@ -350,11 +350,11 @@ function AppContent() {
         <Route
           path="/checkout"
           element={
-            <div className="p-4 md:p-6 max-w-2xl mx-auto mt-20 max-md:overflow-hidden">
+            <div className="p-4 md:p-6 max-w-2xl mx-auto mt-15 overflow-hidden">
               <button onClick={() => navigate("/cart")} className="mb-4">
-                <ArrowLeft size={24} />
+                <ArrowLeft size={24} color="black"/>
               </button>
-              <h2 className="text-2xl font-bold mb-4">Checkout</h2>
+              <h2 className="text-2xl font-bold mb-4 text-black">Checkout</h2>
 
               {cartItems.length === 0 ? (
                 <p className="text-gray-600">No items to checkout.</p>

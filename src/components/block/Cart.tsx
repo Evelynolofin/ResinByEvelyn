@@ -32,7 +32,7 @@ export default function Cart({
               <button onClick={() => navigate("/")}>
                 <ArrowLeft size={24} color="black"/>
               </button>
-              <h2 className="text-2xl font-bold mb-6">Your Cart</h2>
+              <h2 className="text-2xl font-bold mb-6 text-black">Your Cart</h2>
               {cartItems.length === 0 ? (
                 <p className="text-gray-600">Your cart is empty.</p>
               ) : (
