@@ -143,10 +143,10 @@ function AppContent() {
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(productList);
   
-  const [cartItems, setCartItems] = useState<Product[]>(() => {
-  const stored = localStorage.getItem("cartItems");
-  return stored ? JSON.parse(stored) : [];
-  });
+  // const [cartItems, setCartItems] = useState<Product[]>(() => {
+  // const stored = localStorage.getItem("cartItems");
+  // return stored ? JSON.parse(stored) : [];
+  // });
 
   const [details, setDetails] = useState<"delivery" | "pickup">("delivery")
 
@@ -162,10 +162,33 @@ function AppContent() {
 
   const [addressSaved, setAddressSaved] = useState(false);
 
-  
+  const [cartItems, setCartItems] = useState<Product[]>([]);
+  const [cartLoaded, setCartLoaded] = useState(false);
+
   useEffect(() => {
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
+    if (typeof window === "undefined") return
+
+    try {
+      const stored = window.localStorage.getItem("cartItems")
+      if (stored) {
+        setCartItems(JSON.parse(stored))
+      }
+    } catch (err) {
+      console.error("Cart parse error:")
+      window.localStorage.removeItem("caerItems")
+    }
+    setCartLoaded(true)
+  }, [])
+
+  useEffect(() => {
+    if (!cartLoaded || typeof window === "undefined") return;
+
+    window.localStorage.setItem("cartItems", JSON.stringify(cartItems))
+  }, [cartItems, cartLoaded])
+  
+  // useEffect(() => {
+  // localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // }, [cartItems]);
 
   const updateQuantity = (id: number, delta: number) => {
     setFilteredProducts((prev) =>
@@ -317,7 +340,7 @@ function AppContent() {
           element={
             <div className="p-6 max-w-4xl mx-auto mt-20">
               <button onClick={() => navigate("/")}>
-                <ArrowLeft size={24} className="w-10 h-10 flex items-center justify-center rounded-full"/>
+                <ArrowLeft size={24} className="w-10 h-10"/>
               </button>
               <h2 className="text-2xl font-bold mb-6">Your Cart</h2>
               {cartItems.length === 0 ? (
