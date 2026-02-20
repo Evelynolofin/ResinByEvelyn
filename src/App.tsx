@@ -283,7 +283,7 @@ function AppContent() {
                   {item.image && (
                     <img src={item.image} alt={item.name} className="w-full h-48 object-cover mb-4 rounded-xl" />
                   )}
-                  <div className="text-lg font-semibold mb-2">{item.name}</div>
+                  <div className="text-lg font-semibold mb-2 max-md:text-sm">{item.name}</div>
                   <div>₦{item.price.toLocaleString()}</div>
                   <div className="flex items-center gap-2 my-2">
                     <button
@@ -292,7 +292,7 @@ function AppContent() {
                     >
                       -
                     </button>
-                    <span className="px-3 py-1 border rounded">{item.quantity}</span>
+                    <span className="w-9 h-9 flex items-center justify-center rounded-full">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, 1)}
                       className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
@@ -317,7 +317,7 @@ function AppContent() {
           element={
             <div className="p-6 max-w-4xl mx-auto mt-20">
               <button onClick={() => navigate("/")}>
-                <ArrowLeft size={24}/>
+                <ArrowLeft size={24} className="w-10 h-10 flex items-center justify-center rounded-full"/>
               </button>
               <h2 className="text-2xl font-bold mb-6">Your Cart</h2>
               {cartItems.length === 0 ? (
@@ -456,6 +456,7 @@ function AppContent() {
                           <label className={labelClass} htmlFor="phone">Phone Number</label>
                           <input
                             name="phone"
+                            inputMode="numeric"
                             type="text"
                             placeholder="e.g. 08012345678"
                             value={form.phone}
@@ -471,6 +472,7 @@ function AppContent() {
                           <label className={labelClass}>Email</label>
                           <input
                             name="email"
+                            inputMode="email"
                             type="email"
                             placeholder="Email Address"
                             value={form.email}
@@ -559,6 +561,7 @@ function AppContent() {
                           <label className={labelClass} htmlFor="phone">Phone Number</label>
                           <input
                             name="phone"
+                            inputMode="numeric"
                             type="text"
                             placeholder="e.g. 08012345678"
                             value={form.phone}
@@ -573,6 +576,7 @@ function AppContent() {
                         <div>
                           <label className={labelClass}>Email</label>
                           <input
+                            inputMode="email"
                             name="email"
                             type="email"
                             placeholder="Email Address"
