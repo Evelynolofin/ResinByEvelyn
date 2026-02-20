@@ -1,5 +1,3 @@
-import Product  from "../../App"
-
 type Product = {
   id: number;
   image: any;

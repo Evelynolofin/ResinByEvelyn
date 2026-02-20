@@ -25,7 +25,7 @@ type NavbarProps = {
 };
 
 export default function Navbar({ products, setFilteredProducts, cartItems, }: NavbarProps) {
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = cartItems.length
 
   const [search, setSearch] = useState ("");
 
@@ -51,7 +51,7 @@ const isCartPage = display.pathname === "/cart";
 
   return (
     <nav className="flex items-center justify-between bg-blue-600 text-white p-4 fixed top-0 left-0 w-full z-50">
-      <h1 className="text-2xl">ResinByEvelyn</h1>
+      <h1 className="text-2xl font-extrabold">ResinByEvelyn</h1>
 
       <div className="flex items-center gap-4">
         {!isCartPage && (
