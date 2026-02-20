@@ -43,7 +43,7 @@ export default function Cart({
                         <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded" />
                       )}
                       <div className="flex-1">
-                        <h2 className="text-lg font-semibold max-md:text-center">{item.name}</h2>
+                        <h2 className="text-lg font-semibold max-md:text-center text-black">{item.name}</h2>
                         <p className="text-gray-600 max-md:text-center">
                           ₦{item.price.toLocaleString()} x {item.quantity} = ₦
                           {(item.price * item.quantity).toLocaleString()}

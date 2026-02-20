@@ -238,7 +238,7 @@ function AppContent() {
 
 
   const inputClass =
-  "w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400";
+  "w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400 bg-white text-black";
 
   const labelClass = "block text-sm font-medium text-gray-700 mb-1";
 
@@ -301,14 +301,14 @@ function AppContent() {
         <Route
           path="/"
           element={
-            <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-4 mt-20">
+            <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-4 mt-15">
               {filteredProducts.map((item) => (
                 <div key={item.id} className="p-4 shadow rounded">
                   {item.image && (
                     <img src={item.image} alt={item.name} className="w-full h-48 object-cover mb-4 rounded-xl" />
                   )}
-                  <div className="text-lg font-semibold mb-2 max-md:text-sm">{item.name}</div>
-                  <div>₦{item.price.toLocaleString()}</div>
+                  <div className="text-lg font-semibold mb-2 text-black max-md:text-sm">{item.name}</div>
+                  <div className="text-black">₦{item.price.toLocaleString()}</div>
                   <div className="flex items-center gap-2 my-2">
                     <button
                       onClick={() => updateQuantity(item.id, -1)}
@@ -316,7 +316,7 @@ function AppContent() {
                     >
                       -
                     </button>
-                      <span className="w-9 h-9 flex items-center justify-center rounded-full  border-black border-2 text-black">
+                      <span className="w-9 h-9 flex items-center justify-center rounded border-black border-2 text-black">
                         {item.quantity}
                       </span>
                     <button
@@ -350,7 +350,7 @@ function AppContent() {
         <Route
           path="/checkout"
           element={
-            <div className="p-4 md:p-6 max-w-2xl mx-auto mt-20">
+            <div className="p-4 md:p-6 max-w-2xl mx-auto mt-20 max-md:overflow-hidden">
               <button onClick={() => navigate("/cart")} className="mb-4">
                 <ArrowLeft size={24} />
               </button>
@@ -585,13 +585,13 @@ function AppContent() {
                               className="w-12 h-12 object-cover rounded"
                             />
                             <div>
-                              <p className="font-medium text-sm">{item.name}</p>
+                              <p className="font-medium text-sm text-black">{item.name}</p>
                               <p className="text-xs text-gray-500">
                                 ₦{item.price.toLocaleString()} × {item.quantity}
                               </p>
                             </div>
                           </div>
-                          <p className="font-semibold text-sm whitespace-nowrap">
+                          <p className="font-semibold text-sm whitespace-nowrap text-black">
                             ₦{(item.price * item.quantity).toLocaleString()}
                           </p>
                         </div>

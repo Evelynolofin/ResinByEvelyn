@@ -11,7 +11,7 @@ export default function Payment() {
   }, []);
 
   return (
-    <div className="max-w-md mx-auto p-6 space-y-6 mt-20">
+    <div className="max-w-md mx-auto p-6 space-y-6 mt-15 max-md:overflow-hidden">
       <div className="bg-green-50 border border-green-300 rounded-lg p-4 text-center space-y-1">
         <p className="text-2xl">🎉</p>
         <p className="text-lg font-bold text-green-700">Order Received!</p>
