@@ -28,7 +28,7 @@ export default function Cart({
   );
 
   return (
-    <div className="p-6 max-w-4xl mx-auto mt-20">
+    <div className="p-6 max-w-4xl mx-auto mt-15">
               <button onClick={() => navigate("/")}>
                 <ArrowLeft size={24} color="black"/>
               </button>
@@ -56,7 +56,7 @@ export default function Cart({
                           >
                             -
                           </button>
-                          <span className="px-2 py-1 border rounded">{item.quantity}</span>
+                          <span className="px-2 py-1 border-black border-2 rounded text-black">{item.quantity}</span>
                           <button
                             onClick={() => updateCartQuantity(item.id, 1)}
                             className="px-2 py-1 bg-gray-300 rounded hover:bg-gray-400"

@@ -238,7 +238,7 @@ function AppContent() {
 
 
   const inputClass =
-  "w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400 bg-white";
+  "w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-400";
 
   const labelClass = "block text-sm font-medium text-gray-700 mb-1";
 
@@ -316,7 +316,9 @@ function AppContent() {
                     >
                       -
                     </button>
-                    <span className="w-9 h-9 flex items-center justify-center rounded-full">{item.quantity}</span>
+                      <span className="w-9 h-9 flex items-center justify-center rounded-full  border-black border-2 text-black">
+                        {item.quantity}
+                      </span>
                     <button
                       onClick={() => updateQuantity(item.id, 1)}
                       className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
