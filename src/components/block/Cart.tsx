@@ -74,7 +74,7 @@ export default function Cart({
                     </div>
                   ))}
 
-                  <div className="text-right text-xl font-bold mt-4">
+                  <div className="text-right text-xl font-bold mt-4 text-black">
                     Total: ₦
                     {total.toLocaleString()}
                   </div>
